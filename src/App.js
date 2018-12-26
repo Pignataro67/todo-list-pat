@@ -1,28 +1,45 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import Child from './Child'
 
 class App extends Component {
+  state = {
+    name: 'Cernan Bernardo',
+    name2: 'Pat Pignataro',
+    count: 100
+  }
+
+  changeCount = () => {
+    this.setState({
+      count: 300
+    })
+  }
+
+  changeName = () => {
+    this.setState({
+      name: 'Xander Pignataro'
+    })
+  }
+
+  changeEverything = () => {
+    this.setState({
+      name2: 'Kenzie Pignataro'
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Child
+          count={this.state.count}
+          something={this.state.name}
+          name2={this.state.name2}
+          whatever={this.changeCount}
+        />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
