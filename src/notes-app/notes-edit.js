@@ -1,31 +1,188 @@
 const titleElement = document.querySelector('#note-title')
 const bodyElement = document.querySelector('#note-body')
 const removeElement = document.querySelector('#remove-note')
+const dateElement = document.querySelector('#last-edited')
 const noteId = location.hash.substring(1)
-const notes = getSavedNotes()
-const note = notes.find(function (note) {
-  return note.id === noteId
-})
+let notes = getSavedNotes()
+let note = notes.find((note) => note.id === noteId)
 
-if ( note === undefined) {
+if (!note) {
   location.assign('/index.html')
 }
 
 titleElement.value = note.title
 bodyElement.value = note.body
+dateElement.textContent = generateLastEdited(note.updatedAt)
 
-titleElement.addEventListener('input', function (e) {
+titleElement.addEventListener('input', (e) => {
   note.title = e.target.value
+  note.updatedAt = moment().valueOf()
+  dateElement.textContent = generateLastEdited(note.updatedAt)
   saveNotes(notes)
 })
 
-bodyElement.addEventListener('input', function(e) {
+bodyElement.addEventListener('input', (e) => {
   note.body = e.target.value
+  note.updatedAt = moment().valueOf()
+  dateElement.textContent = generateLastEdited(note.updatedAt)
   saveNotes(notes)
 })
 
-removeElement.addEventListener('click', function(e) {
+removeElement.addEventListener('click', (e) => {
   removeNote(note.id)
   saveNotes(notes)
   location.assign('/index.html')
 })
+
+wnndow.addEventListener('storage', (e) => {
+  if (e.key === 'notes') {
+    notes = JSON.parse(e.newValue)
+    note = notes.find((note) => note.id === noteId)
+    
+    if (!note) {
+      location.assign('/index.html')
+    }
+    
+    titleElement.value = note.title
+    bodyElement.value = note.body
+    dateElement.textContent = generateLastEdited(note.updatedAt)
+  }
+})
+
+// const add2 = function () {
+//   return arguments[0] + arguments[1]
+// }
+
+// connsole.log(add(11, 22, 33, 44))
+
+// let car = { 
+//   color: 'Red',
+//   getSummary : function() {
+//     return `The car is ${this.color}`
+//   }
+// }
+
+// console.log(car.getSummmary())
+
+// let myAge = 40
+// let message = myAge >= 18 ? 'You can vote!' : 'You cannnot vote.'
+
+// console.log (message)
+
+// let myAge2 = 40
+// let showPage = () => {
+//   return ('Showing the page')
+// }
+// let showErrrorPage = () => {
+//   return ('Show the error page')
+// }
+
+// let message2 = myAge2 >= 21 ? showPage() : showErrrorPage()
+// confirm.log(message2)
+
+let team = ['Pat', 'Andrew'] 
+let print = team.length <= 4 ? "Team size: 3" : "Too many people on your team"
+
+// Truthy - values that resolve to true in boolean context
+// Falsy - Values that resolve to false in boolean context
+// Falsy values - false, 0, empty string, null, undefined, NaN
+
+// let products = []
+// let product = products[0]
+
+// if (product) {
+//   console.log('Product found')
+// } else {
+//   console.log('Product not found')
+// }
+
+// // Type coercion - a string, a number, a boolean
+
+// console.log('5' + 5)
+// console.log('5' - 5)
+// console.log('5' === 5)
+
+// let value = true + 12
+// let type = typeof 123
+// console.log(type)
+// console.log(value)
+
+// let getTip = (amount) => {
+//   if (typeof amount === 'number') {
+//     return amount * .25
+//   } else {
+//     throw Error ('Argument must be a number')
+//   }
+// }
+
+// try {
+//   let result = getTip(true)
+// console.log(result)
+//   } catch (e) {
+//     console.log('catch block is running')
+//   }
+
+// let result = getTip(true)
+// console.log(result)
+
+let Person = function(firstName, lastName, age) {
+  this.firstName = firstName
+  this.lastName = lastName
+  this.age = age
+  this.likes = likes
+}
+
+Person.prototype.getBio = function() {
+  let bio = `${this.firstName} is ${this.age}.`
+
+  this.likes.forEach((like) => {
+    bio = bio + `${this.firstName} likes ${like}`
+  })
+  return bio
+}
+
+Person.prototype.setName = function (fullName) {
+  let names = fullName.split(' ')
+  this.firstName = names[0]
+  this.lastName = names[1]
+}
+
+let me = new Person('Pat', 'P', 40, ['learnig', 'chilling'])
+
+me.getBio = function () {
+  return 'This is fake!'
+}
+
+me.setName('Xander P')
+console.log(me.getBio())
+
+let you = new Person('Terri', 'P', 38)
+console.log(you.getBio())
+
+
+
+
+
+let Hangman = function(word, remainingGuesses, guesses) {
+  this.word = word.toLowerCase().split('')
+  this.remainingGuesses = remainingGuesses
+  this.guessedLetters = ['c']
+}
+
+Hangman.prototype.getPuzzle = function () {
+  let puzzle = ''
+
+  this.word.forEach((letter) => {
+    if (this.guessedLetters.includes(letter) || letter === ' ') {
+      puzzle += letter
+    } else {
+      puzzle += '*'
+    }
+  })
+  return puzzle
+}
+
+let me = new Hangman('hang', 3)
+let you = new Hangman('man', 2)
+
+console.log(me, you)

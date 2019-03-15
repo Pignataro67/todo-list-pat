@@ -3,9 +3,72 @@
 <html>
   <head></head>
     <body>
-    <input id="note-title" placeholder="Note title">
-    <textarea id="note-body" placeholder="Enter note text"></textarea>
+      <a href="/index.html">Home</a>
+      <input id ="note-title" placeholder="Note title">
+      <span id="last-edited"></span>
+      <textarea id="note-body" placeholder="Enter note text"></textarea>
+      <button id="remove button">Remove Button</button>
       <script src="notes-functions.js"></script>
-      <script src="notes-functions.js"></script>
+      <script src="notes-edit.js"></script>
     </body>
 </html>
+
+const squareLong = (num) => num * num
+
+console.log(square(5))
+
+let people = [{
+  name: 'Pat',
+  age: 40
+}, {
+  name: 'Terri',
+  age: 38
+}, {
+  name: 'MJ',
+  age: '70'
+}]
+
+let people = [{
+  name: 'Pat',
+  age: 40
+}, {
+  name: 'Terri',
+  age: 38
+}, {
+  name: 'MJ',
+  age: '70'
+}]
+
+<!-- const under40 = people.filter(function (person) {
+  return person.age < 40
+})
+
+console.log(under40()) -->
+
+let under40 = people.filter((person) => person.age < 40)
+
+console.log(under40)
+
+let under40 = people.filter((person) => person.age < 40)
+
+console.log(under40)
+
+let people4 = [{
+  name: 'Pat',
+  age: 40
+}, {
+  name: 'Terri',
+  age: 38
+}, {
+  name: 'Xander',
+  age: '3'
+}]
+
+let person = people4.find((person) => person.age === 3)
+
+console.log(person.name)
+
+let under40 = people1.filter((person) => person.age === 3)
+
+console.log(under40)
+
