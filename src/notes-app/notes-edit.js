@@ -125,26 +125,26 @@ let print = team.length <= 4 ? "Team size: 3" : "Too many people on your team"
 // let result = getTip(true)
 // console.log(result)
 
-let Person = function(firstName, lastName, age) {
-  this.firstName = firstName
-  this.lastName = lastName
-  this.age = age
-  this.likes = likes
-}
-
-Person.prototype.getBio = function() {
-  let bio = `${this.firstName} is ${this.age}.`
+class Person {
+  constructor(firstName, lastName, age, likes =[]) {
+    this.firstName = firstName
+    this.lastName = lastName
+    this.age = age
+    this.likes = likes
+  }
+  getBio() {
+    let bio = `${this.firstName} is ${this.age}.`
 
   this.likes.forEach((like) => {
     bio = bio + `${this.firstName} likes ${like}`
   })
   return bio
-}
-
-Person.prototype.setName = function (fullName) {
-  let names = fullName.split(' ')
-  this.firstName = names[0]
-  this.lastName = names[1]
+  }
+  setName() {
+    let names = fullName.split(' ')
+    this.firstName = names[0]
+    this.lastName = names[1]
+  }
 }
 
 let me = new Person('Pat', 'P', 40, ['learnig', 'chilling'])
