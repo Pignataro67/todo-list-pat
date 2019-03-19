@@ -1,3 +1,6 @@
+// Prototypal Inheritance
+// myPerson --> Person.prototype --> Object.prototype --> null
+
 class Hangman {
   constructor(word, remainingGuesses) {
     this.word = word.toLowerCase().split('')

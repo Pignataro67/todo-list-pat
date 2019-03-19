@@ -140,10 +140,13 @@ class Person {
   })
   return bio
   }
-  setName() {
+  set fullName(fullName) {
     let names = fullName.split(' ')
     this.firstName = names[0]
     this.lastName = names[1]
+  }
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`
   }
 }
 
@@ -153,11 +156,44 @@ me.getBio = function () {
   return 'This is fake!'
 }
 
-me.setName('Xander P')
+class Employee extends Person {
+  constructor(firstName, lastName, age, positon, likes) {
+    super(firstName, lastName, age, likes)
+    this.position = position
+  }
+  getBio() {
+    return `${this.fullName} is a ${this.position}.`
+  }
+  getYearsLeft() {
+    return 65 - this.age
+  }
+}
+
+class Student extends Person {
+  constructor(firstName, lastName, age, grade, likes) {
+    super(firstName, lastName, age, likes)
+    this.grade = grade
+  }
+  getBio() {
+    const status = this.grade >= 70 ? 'passing' : 'failing'
+    return `${this.firstName} is ${status} the class.`
+  }
+  updateGrade(change) {
+    this.grade += change
+  }
+}
+
+const me = new Employee('Andrew', 'Mead', 27, 'Teacher', [])
+me.fullName = 'Clancey Turner'
+console.log(me.getBio)
+me.updateGrade(-20)
 console.log(me.getBio())
 
-let you = new Person('Terri', 'P', 38)
-console.log(you.getBio())
+// me.setName('Xander P')
+// console.log(me.getBio())
+
+// let you = new Person('Terri', 'P', 38)
+// console.log(you.getBio())
 
 
 
@@ -186,3 +222,20 @@ let me = new Hangman('hang', 3)
 let you = new Hangman('man', 2)
 
 console.log(me, you)
+
+const data = {
+  locations: [],
+  get location () {
+    return this._location
+  },
+  set location(value) {
+    value = value.trim()
+    this._location = value.trim()
+    this.locations.push(this._location)
+  }
+}
+
+// code that uses the data object
+data.location = '     Philidelphia        '
+data.location = ' New York'
+console.log(data)
