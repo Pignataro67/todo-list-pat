@@ -39,7 +39,7 @@ class Counter extends React.Cmponent {
         </div>
       );
     }
-  }
+  } // Adding this ti see if it shows on github
 
 ReactDOM.render(<Counter />, document.getElementById('app'));
 
