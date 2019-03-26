@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!--  -->
+<!-- <!DOCTYPE html>
 
 <html>
   <head>
-    
+    <p>hello</p>
   </head>
   <body>
     <h1>Notes App</h1>
@@ -18,4 +19,22 @@
     <script src="notes-functions.js"></script>
     <script src="notes-app.js"></script>
   </body>
-</html>
+</html> -->
+
+
+
+
+class Header extends React.Component {
+  render() {
+    return <p>This is from Header</p>;
+  }
+}
+
+const jsx = (
+  <div>
+    <h1>Title</h1>
+    <Header />
+  </div>
+);
+
+ReactDOM.render(jsx, document.getElementById('app'));

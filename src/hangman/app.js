@@ -1,20 +1,33 @@
+// HTTP (Hypertext transfer Protocol)
+// Request - What do we want to do
+// Response - What was actually done
+
 let puzzleEl = document.querySelector('#puzzle')
 let guessesEl = document.querySelector('#guesses')
 let game1 = new Hangman('hang', 3)
 
 puzzleEl.textContent = game1.getPuzzle()
 guessesEl.textContent = game1.getStatusMessage()
-console.log(game1.status)
-
-//   let game2 = new Hangman('New Jersey', 2)
-//   console.log(game2.getPuzzle())
 
 window.addEventListener('keypress', function (e) {
   let guess = String.fromCharCode(e.charCode)
   game1.makeGuess(guess)
-  puzzleEl.textContent = game1.getPuzzle()
-  guessesEl.textContent = game1.getStatusMessage()
+  puzzleEl.textContent = game1.puzzle
+  guessesEl.textContent = game1.StatusMessage
 })
+
+// Making an HTTP request
+const request = new XMLHttpRequest()
+
+request.addEventListener('readystatechange', (e) => {
+  if (e.target.readyState === 4) {
+    const data = JSON.parse(e.target.responseText)
+    console.log(data)
+  }
+})
+
+request.open('GET', 'http://puzzle.mead.io/puzzle')
+request.send()
 
 // Primitive value: non-object-- strinng, number, boolean, null, undefined
 

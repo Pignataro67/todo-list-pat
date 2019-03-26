@@ -1,8 +1,228 @@
+class Counter extends React.Cmponent {
+  constructor(props) {
+    super(props);
+    this.handleAddOne = this.handleAddOne.bind(this);
+    this.handleMinusOne = this.handleMinusOne.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    this.state = {
+      count: 0       // 1. setup default state object 2. commp renders and uses values
+    };               // 3. Change state based on event buttons and event handlers
+  }                  // 4.
+    handleAddOne() {
+      this.setState((prevState) => {
+        return {
+          count: prevState.count + 1
+        }; // return {} state values we want to change and new value we want to assign
+      }); // 3. --> current state values 1st arg, prevstate, state {} b4 changes are applied
+    }
+    handleMinusOne() {
+      this.setState((prevState) => {
+        return {
+          count: prevState.count - 1
+        };
+      });
+    }
+    handleReset() {
+      this.setState(() => {
+        return { 
+          count: 0
+        };
+      });
+    }
+    render() {
+      return (
+        <div>
+          <h1>Count: {this.state.count}</h1> // step 2
+          <button onClick={this.handleAddOne}>+1</button>
+          <button onClick={this.handleMinusOne}>-1</button>
+          <button onClick={this.handleReset}>reset</button>
+        </div>
+      );
+    }
+  }
 
+ReactDOM.render(<Counter />, document.getElementById('app'));
 
+pups.sort(function (a, b) {
+  if (a.name < b.name) {
+    return -1
+  } else if (a.name > b.name) {
+    return 1
+  } else {
+    return 0
+  }
+});
 
+//*******************************************************
+// class VisibilityToggle extends Rewact.Component {
+//   constructor(props) {
+//     super(props);
+//     this.handleToggleVisibilty = this.handleToggleVisibilty.bind(this)
+//     this.state = {
+//       visibility: false
+//     };
+//   }
+//   handleToggleVisibilty() {
+//     this.setState((prevState) => {
+//       return {
+//         visibility : !prevState.visibility
+//       }
+//     });
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <button onClick={this.handleToggleVisibilty}></button>
+//       </div>
+//     )
+//   }
+// }
 
+// ReactDOM.render(<VisibilityToggle />, getElementById('app'))
 
+// class Counter extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.hanldeAddOne = this.hanldeAddOne.bind(this);
+//     this.handleMinusOne = this.handleMinusOne.bind(this);
+//     this.handleReset = this.handleReset.bind(this);
+//     this.state = {
+//       count: 0, STATE IS OBJECT, KEY VALUE PAIRS -->INITIAL DATA RENDERS TO SCREENS --> STATE {} CABE CHANGED BY US, BASED OF EVENT BUTTON CLICK, FORM SUBMISSION, FINISHING OF HTTP REQUEST THAT GOT JSON DATA FROM AN API --> WHEN WE CHANGE STATE APP RERENDERS TO GET U UP TO DATE --> IF STATE DOESNT CHANGE, APP DOESNT RERENDER BUT WILL UPDATE UI WHEN STATE CHANGES
+//     }
+//   }
+  
+//   hanldeAddOne() {
+//     this.setState((prevState) => {
+//       return {
+//         count: prevStae.count + 1
+//       };
+//     });
+//   }
+//   handleMinusOne() {
+//     this.setState((prevState) => {
+//       return {
+//         count: prevState.count - 1
+//       };
+//     });
+//   }
+//   handleReset() {
+//     this.setState(() => {
+//       return {
+//         count: 0
+//       };
+//     });
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <h1>Count: {this.state.count}</h1>
+//         <button onClick={this.hanldeAddOne}>+1</button>
+//         <button onClick={this.handleMinusOne}>-1</button>
+//         <button onClick={this.handleReset}>reset</button>
+//       </div>
+//     );
+//   }
+// }
+
+// class IndecisonApp extends React.Component {
+//   render () {
+//     const title = 'Indecision';
+//     const subTitle = 'Put your life in the hands of a computer';
+//     const options = ['Thing one', 'thing two', 'Thing four']
+
+//     return (
+//       <div>
+//         <Header title={title} subTitle={subTitle} />
+//         <Action />
+//         <Options options={options} />
+//         <AddOption />
+//       </div>
+//     );
+//   }
+// }
+
+// class Header extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1>{this.props.title}</h1>
+//         <h2>{this.props.subTitle}</h2>
+//       </div>
+//     );
+//   }
+// }
+
+// class Action extends React.Component {
+//   handlePick() {
+//     alert('handlePick')
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <button onClick={this.handlePick}>What should I do?</button>
+//       </div>
+//     );
+//   }
+// }
+
+// class Options extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.handleRemoveAll = this.handleRemoveAll.bind(this);
+//   }
+//   handleRemoveAll() {
+//     console.log(this.props.options);
+//     // alert('Remove all')
+//   }
+//   render() {
+//     return (
+//       <div>                                                        <<-- bind sets own context
+//         <button onClick={this.handleRemoveAll}>Remove All</button>  <<-- bind sets own context 
+//       {
+//         this.props.options.map((option) => <Option key={option} optionText={option}/>)
+//       }
+//       </div>
+//     );
+//   }
+// }
+
+// class Option extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         {this.props.optionText}
+//       </div>
+//     )
+//   }
+// }
+
+// class AddOption extends React.Compnent {
+//   handleAddOption(e) {
+//     e.preventDefault // <<--- default form submit do not want full page refresh
+
+//     const  option = e.target.elements.option.value.trim();
+
+//     if (option) {
+//       alert(option);
+//     }
+//   }
+//   render() {
+//     return(
+//       <div>
+//         <h1>
+//           <form onSubmit={this.handleAddOption}>
+//             <input type="text" name="option"></input>
+//             <button>Add Option</button>
+//           </form>
+//         </h1>
+//       </div>
+//     );
+//   }
+// }
+
+// ReactDOM.render(<IndecisonApp />, document.getElementById('app'));
+
+//***********************************************************************
 // import React, { Component } from 'react';
 // // import Child from './Child';
 // import IncompleteToDoList from './IncompleteToDoList';
@@ -91,44 +311,3 @@
 
 // // // 4. Display complete and incomplete todos separately 
 // // // 5. When a checkbox is clicked on a todo, it changes the completed value to the opposite of what it was
-
-
-
-
-// // import React, { Component } from 'react';
-// // import './App.css';
-// // import { BrowserRout: sr, Link, Switch, Route } from 'react-router-dom';
-// // import Home from './Home';
-// // import Child1 from './Child1';
-// // import Child2 from './Child2';
-// // import Child3 from './Child3';
-// // import Child4 from './Child4';
-// // import NotFound from './NotFound';
-
-// // class App extends Component {
-// //   render() {
-// //     return(
-// //       <BrowserRouter>
-// //         <div className="App">
-// //           <Link to='/'>Home</Link>
-// //           <Link to='/Child1/3'>Child1</Link>
-// //           <Link to='/Child2?arg1=15&arg2=16'>Child2</Link>
-// //           <Link to='/Child3'>Child3</Link>
-// //           <Link to='/Child4'>Child4</Link>
-// //           <Switch>
-// //             <Route exact path='/' component={Home}/>
-// //             <Route exact path='/Child2' component={Child2}/>
-// //             <Route exact path='/Child1/:number' component={Child1}/>
-// //             <Route exact path='/Child3' component={Child3}/>
-// //             <Route exact path='/Child4' component={Child4}/>
-// //             <Route component={NotFound}/>
-// //           </Switch>
-// //         </div>
-// //       </BrowserRouter>
-// //     )
-// //   }
-// // }
-
-// // export default App;
-
-
